@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Estaciones de servicio &quot; Ubicaciones&quot;</title>
+        <link rel="stylesheet" type="text/css" href="estilos.css">   
+    </head>
+    <body>
+        <div id="texto">
+    	    <h1 align="center">Nuestras estaciones de servicio</h1>
+		    <br>
+		    <br>
+            <table width="200" border="0" align="center" id="t1">
+                <tbody>
+                    <tr>
+                    <tr>
+                        <td><img src="imgDiesel.jpg" width="200" height="200"></td>    
+                        <td align="center" id="t2"><button type="button"
+                        id="cargarXML">Abrir</button></td>    
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <br>
+        </div>
+        <table id="datos" border="1" align="center"><</table>
+        <script>
+            document.getElementById("cargarXML").addEventListener("click",cargarXML);
+			function cargarXML(){
+				var xmlhttp=new XMLHttpRequest();
+				xmlhttp.onreadystatechange=function(){
+					if(this.readyState==4 && this.status==200){
+						mostrarArchivo(this);						
+						}						
+					};
+					xmlhttp.open("GET","Estaciones.xml",true);
+					xmlhttp.send();
+				}							
+				function mostrarArchivo(xml){
+					var x,i,docXML,tabla;
+					docXML=xml.responseXML;
+                    tabla="<tr><th>ID DE ESTACIÓN</th><th>NOMBDE DE ESTACIÓN</th><th>DOMICILIO</th><th>E-MAIL</th><th>PRODUCTOS</th><th>CONTACTO</th><th>TELÉFONO</th></tr>";					
+					x=docXML.getElementsByTagName("ubicacion");
+					for(i=0; i<x.length; i++){
+						tabla+="<tr><td>";
+                        tabla+=x[i].getElementsByTagName("id")[0].textContent;
+                        tabla+="</td><td>";
+                        tabla+=x[i].getElementsByTagName("estacion")[0].textContent;    
+                        tabla+="</td><td>";
+                        tabla+=x[i].getElementsByTagName("domicilio")[0].textContent;
+                        tabla+="</td><td>";
+                        tabla+=x[i].getElementsByTagName("correo")[0].textContent;
+                        tabla+="</td><td>";
+                        tabla+=x[i].getElementsByTagName("productos")[0].textContent;
+                        tabla+="</td><td>";
+                        tabla+=x[i].getElementsByTagName("contacto")[0].textContent;
+                        tabla+="</td><td>";
+                        tabla+=x[i].getElementsByTagName("telefono")[0].textContent;
+                        tabla+="</td></tr>";    
+						}
+						document.getElementById("datos").innerHTML=tabla;
+				}
+		</script>    
+    </body>
+</html>
