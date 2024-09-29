@@ -7,25 +7,19 @@
     </head>
     <body>
         <div id="texto">
-    	    <h1 align="center">Nuestras estaciones de servicio</h1>
-		    <br>
-		    <br>
-            <table width="200" border="0" align="center" id="t1">
-                <tbody>
-                    <tr>
-                    <tr>
-                        <td><img src="imgDiesel.jpg" width="200" height="200"></td>    
-                        <td align="center" id="t2"><button type="button"
-                        id="cargarXML">Abrir</button></td>    
-                    </tr>
-                </tbody>
-            </table>
-            <br>
-            <br>
+    	    <h1>Estaciones de BioDiesel360-60</h1>
+            <img src="imgDiesel.jpg" alt="Logotipo de Biodiesel">
+            <br>    
+            <h3>Rio Culiacán sin número</h3>
+            <h3>Tel. 4428952834</h3>
+            <h3>Correo: lm6936945@gmail.com</h3>
+		    <br>       
         </div>
         <table id="datos" border="1" align="center"><</table>
         <script>
-            document.getElementById("cargarXML").addEventListener("click",cargarXML);
+            window.onload=function(){
+                cargarXML();
+            }
 			function cargarXML(){
 				var xmlhttp=new XMLHttpRequest();
 				xmlhttp.onreadystatechange=function(){
@@ -57,9 +51,11 @@
                         tabla+="</td><td>";
                         tabla+=x[i].getElementsByTagName("telefono")[0].textContent;
                         tabla+="</td></tr>";    
-						}
-						document.getElementById("datos").innerHTML=tabla;
-				}
-		</script>    
+			}
+			document.getElementById("datos").innerHTML=tabla;
+		}
+                
+	</script>
+        <h6>Realizado por El marques</h6>         
     </body>
 </html>
